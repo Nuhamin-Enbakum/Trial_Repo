@@ -1,11 +1,10 @@
 name: Simple CI Workflow
 
-# 🔄 Trigger on every push and pull request
 on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-latest   # 🖥️ Run on Ubuntu
+    runs-on: ubuntu-latest
 
     steps:
       # 1️⃣ Checkout code
@@ -16,11 +15,12 @@ jobs:
       - name: Print CI message
         run: echo "CI Running 🚀"
 
-      # 3️⃣ Upload an artifact (example: a log file)
-      - name: Create and upload artifact
+      # 3️⃣ Create and upload artifact
+      - name: Create artifact file
         run: echo "This is a sample artifact file" > output.txt
+
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4   # ✅ Updated to v4
         with:
           name: sample-artifact
           path: output.txt
